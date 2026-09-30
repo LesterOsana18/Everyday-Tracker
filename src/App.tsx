@@ -46,6 +46,10 @@ function App() {
   const [expenses, setExpenses] = useState<Expense[]>(initialData.expenses);
   const [description, setDescription] = useState("");
   const [amount, setAmount] = useState("");
+  const currentPeriod = new Intl.DateTimeFormat("en-PH", {
+    month: "long",
+    year: "numeric",
+  }).format(new Date());
 
   useEffect(() => {
     localStorage.setItem(STORAGE_KEY, JSON.stringify({ baselineSalary, expenses }));
@@ -73,6 +77,16 @@ function App() {
     setExpenses((currentExpenses) => currentExpenses.filter((expense) => expense.id !== id));
   };
 
+  const handleClearExpenses = () => {
+    if (expenses.length === 0) return;
+
+    const confirmed = window.confirm(
+      `Clear all ${expenses.length} expense${expenses.length === 1 ? "" : "s"}? This will remove the records from this browser.`,
+    );
+
+    if (confirmed) setExpenses([]);
+  };
+
   return (
     <div className="app">
       <header className="header">
@@ -85,13 +99,17 @@ function App() {
             </svg>
           </div>
           <div className="brand-copy">
+            <span className="page-eyebrow"><span aria-hidden="true" /> Overview</span>
             <h1>Expense Tracker</h1>
             <p>Keep your spending in balance.</p>
           </div>
         </div>
 
         <div className="salary-control">
-          <label htmlFor="salary">Monthly baseline</label>
+          <div className="salary-heading">
+            <label htmlFor="salary">Monthly baseline</label>
+            <span className="period-badge">{currentPeriod}</span>
+          </div>
           <div className="salary-input">
             <span aria-hidden="true">₱</span>
             <input
@@ -111,7 +129,10 @@ function App() {
           <div className={`summary-card balance-card${remainingFunds < 0 ? " over-budget" : ""}`}>
             <div className="summary-topline">
               <span className="summary-label">Remaining balance</span>
-              <span className="balance-badge" aria-hidden="true">₱</span>
+              <span className="budget-status">
+                <span className="status-dot" aria-hidden="true" />
+                {remainingFunds < 0 ? "Over budget" : "On track"}
+              </span>
             </div>
             <strong>{formatCurrency(remainingFunds)}</strong>
             <span className="summary-context">of {formatCurrency(baselineSalary)} monthly income</span>
@@ -190,7 +211,14 @@ function App() {
                 <h2>Expense record</h2>
                 <p>Your latest spending activity</p>
               </div>
-              <span className="item-count">{expenses.length} {expenses.length === 1 ? "item" : "items"}</span>
+              <div className="list-actions">
+                <span className="item-count">{expenses.length} {expenses.length === 1 ? "item" : "items"}</span>
+                {expenses.length > 0 && (
+                  <button className="clear-button" type="button" onClick={handleClearExpenses}>
+                    Clear all
+                  </button>
+                )}
+              </div>
             </div>
 
             {expenses.length === 0 ? (
@@ -207,10 +235,15 @@ function App() {
               </div>
             ) : (
               <div className="expense-items">
-                {expenses.map((expense) => (
+                {expenses.map((expense, index) => (
                   <div className="expense-item" key={expense.id}>
                     <div className="expense-description">
-                      <span className="expense-dot" aria-hidden="true">₱</span>
+                      <span className={`expense-dot expense-color-${index % 4}`} aria-hidden="true">
+                        <svg viewBox="0 0 20 20" fill="none">
+                          <path d="M5 3.5h7l3 3v10H5v-13Z" />
+                          <path d="M12 3.5v3h3M7.5 10h5M7.5 13h5" />
+                        </svg>
+                      </span>
                       <strong>{expense.description}</strong>
                     </div>
                     <div className="expense-item-right">
@@ -232,6 +265,15 @@ function App() {
           </div>
         </section>
       </main>
+
+      <footer className="footer-note">
+        <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
+          <path d="M5.5 9V6a4.5 4.5 0 0 1 9 0v3M4 9h12v8H4V9Z" />
+          <circle cx="10" cy="13" r="1" />
+        </svg>
+        <span>Your expense data stays in this browser.</span>
+        <span className="footer-credit">Created by Lester Osana</span>
+      </footer>
     </div>
   );
 }

@@ -18,7 +18,10 @@ body {
     "Segoe UI",
     sans-serif;
 
-  background: #f6f8f6;
+  background:
+    radial-gradient(ellipse at 8% 0%, rgb(222 239 227 / 54%), transparent 31rem),
+    radial-gradient(ellipse at 94% 16%, rgb(231 239 229 / 58%), transparent 28rem),
+    #f6f8f6;
   color: #24372b;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;

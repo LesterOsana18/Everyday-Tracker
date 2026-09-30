@@ -47,6 +47,25 @@
   letter-spacing: -0.045em;
 }
 
+.page-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin-bottom: 5px;
+  color: #789080;
+  font-size: 10px;
+  font-weight: 750;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+
+.page-eyebrow > span {
+  width: 6px;
+  height: 6px;
+  background: #4b9b68;
+  border-radius: 50%;
+}
+
 .brand-copy p,
 .section-heading p,
 .card-header p {
@@ -61,6 +80,22 @@
   align-items: flex-start;
   gap: 7px;
   flex: 0 0 auto;
+}
+
+.salary-heading {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.period-badge {
+  padding: 4px 8px;
+  color: #647a6b;
+  background: #eaf3ec;
+  border-radius: 999px;
+  font-size: 10px;
+  font-weight: 650;
+  white-space: nowrap;
 }
 
 .salary-control label,
@@ -107,6 +142,7 @@
   font-size: 15px;
   font-weight: 650;
   text-align: right;
+  font-variant-numeric: tabular-nums;
 }
 
 .content {
@@ -150,22 +186,30 @@
   width: 100%;
 }
 
+.budget-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 9px;
+  color: #35784f;
+  background: #e9f4ec;
+  border-radius: 999px;
+  font-size: 10px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.status-dot {
+  width: 6px;
+  height: 6px;
+  background: currentColor;
+  border-radius: 50%;
+}
+
 .summary-label {
   color: #66766c;
   font-size: 13px;
   font-weight: 600;
-}
-
-.balance-badge {
-  display: grid;
-  place-items: center;
-  width: 30px;
-  height: 30px;
-  color: #28734c;
-  background: #dfefe4;
-  border-radius: 10px;
-  font-size: 16px;
-  font-weight: 700;
 }
 
 .summary-card strong {
@@ -174,6 +218,11 @@
   font-weight: 750;
   letter-spacing: -0.045em;
   line-height: 1.1;
+  font-variant-numeric: tabular-nums;
+}
+
+.summary-context,
+.expense-item-right > span {
   font-variant-numeric: tabular-nums;
 }
 
@@ -191,9 +240,9 @@
   color: #b83c38;
 }
 
-.over-budget .balance-badge {
+.over-budget .budget-status {
   color: #b83c38;
-  background: #fae8e6;
+  background: #fae9e7;
 }
 
 .progress-track {
@@ -377,6 +426,36 @@
   white-space: nowrap;
 }
 
+.list-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 0 0 auto;
+}
+
+.clear-button {
+  padding: 6px 9px;
+  color: #9a554f;
+  background: transparent;
+  border: 1px solid #efddda;
+  border-radius: 8px;
+  font-size: 11px;
+  font-weight: 650;
+  cursor: pointer;
+  transition: color 140ms ease, background 140ms ease, border-color 140ms ease;
+}
+
+.clear-button:hover {
+  color: #a83d37;
+  background: #fbefee;
+  border-color: #e9c9c5;
+}
+
+.clear-button:focus-visible {
+  outline: 3px solid rgb(77 155 107 / 35%);
+  outline-offset: 2px;
+}
+
 .empty-state {
   display: flex;
   min-height: 205px;
@@ -467,8 +546,29 @@
   color: #548065;
   background: #f0f6f1;
   border-radius: 10px;
-  font-size: 13px;
-  font-weight: 650;
+}
+
+.expense-dot svg {
+  width: 17px;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.expense-color-1 {
+  color: #5578a4;
+  background: #edf2f9;
+}
+
+.expense-color-2 {
+  color: #a06f35;
+  background: #faf2e6;
+}
+
+.expense-color-3 {
+  color: #8a6894;
+  background: #f4eef6;
 }
 
 .expense-item-right {
@@ -483,6 +583,31 @@
   font-size: 13px;
   font-weight: 650;
   font-variant-numeric: tabular-nums;
+}
+
+.footer-note {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  margin-top: 24px;
+  padding-top: 17px;
+  color: #849188;
+  border-top: 1px solid #e5ebe6;
+  font-size: 11px;
+}
+
+.footer-note svg {
+  width: 15px;
+  stroke: #82958a;
+  stroke-width: 1.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.footer-credit {
+  padding-left: 11px;
+  border-left: 1px solid #d9e1db;
 }
 
 .expense-item-right button {
@@ -557,6 +682,11 @@
     font-size: 24px;
   }
 
+  .page-eyebrow {
+    margin-bottom: 3px;
+    font-size: 9px;
+  }
+
   .brand-copy p {
     font-size: 12px;
   }
@@ -569,6 +699,15 @@
     background: #fff;
     border: 1px solid #e1e8e2;
     border-radius: 12px;
+  }
+
+  .salary-heading {
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .period-badge {
+    font-size: 9px;
   }
 
   .salary-input {
@@ -618,6 +757,16 @@
 
   .empty-state {
     min-height: 185px;
+  }
+
+  .footer-note {
+    margin-top: 18px;
+    flex-wrap: wrap;
+  }
+
+  .footer-credit {
+    padding-left: 0;
+    border-left: 0;
   }
 }
 
