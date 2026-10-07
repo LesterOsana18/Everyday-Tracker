@@ -1,17 +1,17 @@
-# 💰 Expense Tracker
+# ✅ Everyday Tracker
 
-A simple, local-only expense tracker built with **React** and **TypeScript**.
+A lightweight, local-first web app for managing both expenses and personal tasks in one place.
 
-The application provides a single-page dashboard for tracking expenses against a baseline salary. It keeps the interface intentionally minimal and stores data locally in the browser.
+The application combines budgeting and daily planning into a single-page dashboard. It helps you track spending, monitor your remaining balance, and stay organized with everyday tasks without needing a backend, database, or account.
 
 ## ✨ Features
 
-- 💵 Set and track a baseline salary
-- ➕ Add and remove expenses
-- 🧮 Automatically calculate total spending
-- 💰 Automatically calculate remaining funds
+- 💵 Track expenses and spending categories
+- 🧮 View total spending and remaining balance
+- ✅ Add, complete, and remove tasks
+- 📅 Keep personal planning and daily responsibilities in one place
 - 💾 Persist data using browser `localStorage`
-- 📄 Simple, single-page interface
+- 📱 Clean, simple single-page interface
 
 ## 🛠️ Tech Stack
 
@@ -23,4 +23,4 @@ The application provides a single-page dashboard for tracking expenses against a
 
 ## 🎯 Purpose
 
-This project is intended for **personal, local use**. It does not require a backend, database, authentication, or external services.
+This project is designed for personal organization and everyday planning. It brings together financial awareness and task management in a simple, local-only app that is easy to use on a daily basis.
